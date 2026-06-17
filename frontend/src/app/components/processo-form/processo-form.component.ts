@@ -1,4 +1,4 @@
-import { Component, inject, signal, computed } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -35,12 +35,11 @@ export class ProcessoFormComponent {
   private readonly dialogRef = inject(MatDialogRef<ProcessoFormComponent>);
   private readonly dialogData = inject<Processo | null>(MAT_DIALOG_DATA, { optional: true });
 
-  readonly isEditing = computed(() => this.dialogData !== null);
-  readonly titulo = computed(() => (this.isEditing() ? 'Editar Processo' : 'Novo Processo'));
+  readonly isEditing = this.dialogData !== null;
+  readonly titulo = this.isEditing ? 'Editar Processo' : 'Novo Processo';
 
-  // Signals para estado local do formulário
+  // Signal para estado local do formulário (loading do save)
   readonly isSaving = signal(false);
-  readonly isFormValid = computed(() => this.form.valid && !this.isSaving());
 
   readonly statusOptions = [
     { value: 'EM_ANDAMENTO', label: 'Em Andamento' },
@@ -72,7 +71,7 @@ export class ProcessoFormComponent {
     const rawValue = this.form.getRawValue();
     const payload: Record<string, unknown> = {};
 
-    if (!this.isEditing()) {
+    if (!this.isEditing) {
       payload['numero_processo'] = rawValue.numero_processo?.trim();
     }
     payload['titulo'] = rawValue.titulo?.trim();

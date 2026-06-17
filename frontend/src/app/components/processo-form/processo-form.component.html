@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>{{ titulo() }}</h2>
+<h2 mat-dialog-title>{{ titulo }}</h2>
 
 <form [formGroup]="form" (ngSubmit)="salvar()">
   <mat-dialog-content>
@@ -41,7 +41,7 @@
       mat-raised-button
       color="primary"
       type="submit"
-      [disabled]="!isFormValid()"
+      [disabled]="form.invalid || isSaving()"
     >
       @if (isSaving()) {
         <mat-spinner diameter="20" />
