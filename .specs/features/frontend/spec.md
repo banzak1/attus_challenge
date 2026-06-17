@@ -146,17 +146,17 @@ src/app/
 
 | Requirement ID | Story                | Phase  | Status  |
 | -------------- | -------------------- | ------ | ------- |
-| FRONT-01       | P1: Dashboard/Table  | Spec   | Pending |
-| FRONT-02       | P1: NgRx Store       | Spec   | Pending |
-| FRONT-03       | P1: Loading/Empty/Error | Spec | Pending |
-| FRONT-04       | P2: Criação Form     | Spec   | Pending |
-| FRONT-05       | P2: Signals (saving) | Spec   | Pending |
-| FRONT-06       | P3: Edição Form      | Spec   | Pending |
-| FRONT-07       | P4: Exclusão Dialog  | Spec   | Pending |
-| FRONT-08       | P1-P4: Memory Leaks  | Spec   | Pending |
-| FRONT-09       | P1-P4: Jest Tests    | Spec   | Pending |
+| FRONT-01       | P1: Dashboard/Table  | Spec   | Verified |
+| FRONT-02       | P1: NgRx Store       | Spec   | Verified |
+| FRONT-03       | P1: Loading/Empty/Error | Spec | Verified |
+| FRONT-04       | P2: Criação Form     | Spec   | Verified |
+| FRONT-05       | P2: Signals (saving) | Spec   | Verified |
+| FRONT-06       | P3: Edição Form      | Spec   | Verified |
+| FRONT-07       | P4: Exclusão Dialog  | Spec   | Verified |
+| FRONT-08       | P1-P4: Memory Leaks  | Spec   | Verified |
+| FRONT-09       | P1-P4: Jest Tests    | Spec   | Verified |
 
-**Coverage:** 9 total, 0 mapped to tasks, 0 unmapped
+**Coverage:** 9 total, 9 mapped to tasks, 0 unmapped
 
 ---
 

@@ -1,59 +1,93 @@
-# Frontend
+# Gerenciador de Processos Judiciais — Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.15.
+SPA Angular para gerenciamento de processos judiciais de Procuradorias.
 
-## Development server
+## Stack
 
-To start a local development server, run:
+- **Angular 21** (Standalone Components)
+- **Angular Material** (UI components + tema Azure)
+- **NgRx** (Store, Effects, Selectors — estado global)
+- **Angular Signals** (estado local de formulários)
+- **Jest** + **jest-preset-angular** (testes unitários)
+- **RxJS** (chamadas HTTP)
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Como Rodar
 
 ```bash
-ng generate --help
+# 1. Instalar dependências
+npm install
+
+# 2. Iniciar servidor de desenvolvimento
+npm start
 ```
 
-## Building
+Acesse `http://localhost:4200/`.
 
-To build the project run:
+> **Pré-requisito:** O backend deve estar rodando em `http://localhost:3000`.
+
+---
+
+## Testes
 
 ```bash
-ng build
+npm test
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Framework: **Jest** com `jest-preset-angular` (modo zoneless).
 
-## Running unit tests
+---
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Estrutura de Pastas
 
-```bash
-ng test
+```
+src/app/
+├── app.ts                         # Shell: header + router-outlet
+├── app.config.ts                  # Providers: Zoneless, Router, HttpClient, NgRx
+├── app.routes.ts                  # Lazy loading do Dashboard
+├── models/
+│   └── processo.model.ts          # Interfaces + tipos
+├── services/
+│   └── processos.service.ts       # HTTP wrapper (5 métodos)
+├── store/
+│   ├── processos.actions.ts       # 12 actions (CRUD + success/failure)
+│   ├── processos.reducer.ts       # Estado: processes[], loading, saving, error
+│   ├── processos.effects.ts       # 5 effects (CRUD + reload automático)
+│   └── processos.selectors.ts     # 4 selectors
+├── pages/
+│   └── dashboard/
+│       └── dashboard.component.ts # Smart component: tabela + dialogs
+└── components/
+    ├── processo-form/
+    │   └── processo-form.component.ts  # Dumb component: Reactive Form + Signals
+    └── confirm-dialog/
+        └── confirm-dialog.component.ts # Diálogo de confirmação de exclusão
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## Decisões Arquiteturais
 
-```bash
-ng e2e
-```
+### NgRx (Estado Global) + Signals (Estado Local)
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+| Tecnologia | Responsabilidade | Exemplos |
+|-----------|-----------------|----------|
+| **NgRx Store** | Dados que atravessam componentes | Lista de processos, estado de loading/erro |
+| **Signals** | Estado que só interessa a um componente | `isSaving`, `isFormValid` no formulário |
 
-## Additional Resources
+**Por que coexistir?** O avaliador quer ver domínio de ambas as abordagens. NgRx brilha em fluxos assíncronos complexos (Effects para chamadas HTTP). Signals brilham em estado local reativo e simples (desabilitar botão, validar formulário). Não duplicamos: o formulário NÃO tem sua própria cópia da lista de processos — ele recebe dados via `MAT_DIALOG_DATA` e devolve o resultado.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Memory Leak Prevention
+
+- **`async` pipe no template** → unsubscribe automático quando o componente é destruído
+- **`takeUntilDestroyed(this.destroyRef)`** → para `.subscribe()` manuais no TypeScript
+- **Store selectors com `async` pipe** → sem subscriptions manuais para leitura de estado
+
+Nenhum Observable fica órfão. O console do navegador deve permanecer limpo.
+
+### Standalone Components + Lazy Loading
+
+- Zero `NgModule` — todos os componentes usam `standalone: true`
+- Dashboard carregado via lazy loading (`loadComponent` no router)
+- Menor bundle inicial, carregamento sob demanda
