@@ -174,16 +174,16 @@ backend/
 
 | Requirement ID | Story                | Phase  | Status  |
 | -------------- | -------------------- | ------ | ------- |
-| BACK-01        | P1: CRUD             | Spec   | Pending |
-| BACK-02        | P1: Validação        | Spec   | Pending |
-| BACK-03        | P1: Unicidade        | Spec   | Pending |
-| BACK-04        | P2: Swagger          | Spec   | Pending |
-| BACK-05        | P3: Logs Pino        | Spec   | Pending |
-| BACK-06        | P3: Tratamento Erros | Spec   | Pending |
-| BACK-07        | P3: CORS             | Spec   | Pending |
-| BACK-08        | P1: Teste básico     | Spec   | Pending |
+| BACK-01        | P1: CRUD             | Spec   | Verified |
+| BACK-02        | P1: Validação        | Spec   | Verified |
+| BACK-03        | P1: Unicidade        | Spec   | Verified |
+| BACK-04        | P2: Swagger          | Spec   | Verified |
+| BACK-05        | P3: Logs Pino        | Spec   | Verified |
+| BACK-06        | P3: Tratamento Erros | Spec   | Verified |
+| BACK-07        | P3: CORS             | Spec   | Verified |
+| BACK-08        | P1: Teste básico     | Spec   | Verified |
 
-**Coverage:** 8 total, 0 mapped to tasks, 0 unmapped
+**Coverage:** 8 total, 8 mapped to tasks, 0 unmapped
 
 ---
 

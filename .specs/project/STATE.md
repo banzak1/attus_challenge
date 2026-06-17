@@ -17,9 +17,9 @@ Nenhum no momento.
 
 ## Todos
 
-- [ ] Criar spec detalhada do Backend (M1)
-- [ ] Criar spec detalhada do Frontend (M2-M4)
-- [ ] Implementar Backend
+- [x] Criar spec detalhada do Backend (M1)
+- [x] Criar spec detalhada do Frontend (M2-M4)
+- [x] Implementar Backend
 - [ ] Implementar Frontend
 
 ## Lessons Learned
