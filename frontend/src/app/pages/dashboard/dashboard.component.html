@@ -1,0 +1,62 @@
+<div class="dashboard-header">
+  <h2>Processos Judiciais</h2>
+  <button mat-raised-button color="primary" (click)="abrirFormulario()">
+    <mat-icon>add</mat-icon>
+    Novo Processo
+  </button>
+</div>
+
+@if (loading$ | async) {
+  <div class="loading-container">
+    <mat-spinner diameter="48" />
+  </div>
+} @else {
+  @if ((processos$ | async)?.length === 0) {
+    <div class="empty-state">
+      <mat-icon>folder_open</mat-icon>
+      <p>Nenhum processo cadastrado.</p>
+      <p class="hint">Clique em "Novo Processo" para começar.</p>
+    </div>
+  } @else {
+    <table mat-table [dataSource]="(processos$ | async) ?? []" class="mat-elevation-z1">
+
+      <ng-container matColumnDef="numero_processo">
+        <th mat-header-cell *matHeaderCellDef>Número do Processo</th>
+        <td mat-cell *matCellDef="let processo">{{ processo.numero_processo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="titulo">
+        <th mat-header-cell *matHeaderCellDef>Título</th>
+        <td mat-cell *matCellDef="let processo">{{ processo.titulo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let processo">
+          <span class="status-chip" [class]="processo.status">
+            @switch (processo.status) {
+              @case ('EM_ANDAMENTO') { Em Andamento }
+              @case ('SUSPENSO') { Suspenso }
+              @case ('CONCLUIDO') { Concluído }
+            }
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let processo">
+          <button mat-icon-button color="primary" (click)="abrirFormulario(processo)" aria-label="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="confirmarExclusao(processo)" aria-label="Excluir">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  }
+}
