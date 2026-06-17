@@ -16,7 +16,7 @@ export const initialState: ProcessosState = {
   error: null,
 };
 
-export const processsReducer = createReducer(
+export const processosReducer = createReducer(
   initialState,
 
   // Load

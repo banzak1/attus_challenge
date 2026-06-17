@@ -6,7 +6,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
-import { processsReducer } from './store/processos.reducer';
+import { processosReducer } from './store/processos.reducer';
 import { ProcessosEffects } from './store/processos.effects';
 
 export const appConfig: ApplicationConfig = {
@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideHttpClient(withFetch()),
-    provideStore({ processs: processsReducer }),
+    provideStore({ processos: processosReducer }),
     provideEffects(ProcessosEffects),
     provideStoreDevtools({ maxAge: 25 }),
   ],
