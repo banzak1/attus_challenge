@@ -1,0 +1,37 @@
+# =========================
+# Dependências Gerais
+# =========================
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# =========================
+# Ferramentas de IA e Agentes
+# =========================
+.claude/
+.agents/
+.skill-meta.json
+
+# =========================
+# Backend (Fastify / Node)
+# =========================
+*.db
+*.db-journal
+*.sqlite
+logs/
+.env
+
+# =========================
+# Frontend (Angular / Jest)
+# =========================
+dist/
+.angular/
+coverage/
+
+# =========================
+# IDEs e Sistema Operacional
+# =========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
