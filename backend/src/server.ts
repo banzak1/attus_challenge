@@ -17,8 +17,8 @@ async function buildServer() {
   // CORS — permite frontend Angular (localhost:4200)
   // ============================================================
   await app.register(fastifyCors, {
-    origin: ['http://localhost:4200'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    origin: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   });
 
   // ============================================================
