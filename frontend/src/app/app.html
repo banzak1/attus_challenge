@@ -7,9 +7,9 @@
         <span class="toolbar-subtitle">Procuradoria</span>
       </div>
     </div>
-    <div class="toolbar-status">
+    <div class="toolbar-status" [class.offline]="!apiOnline()">
       <span class="status-dot"></span>
-      <span>API Conectada</span>
+      <span>{{ apiOnline() ? 'API Conectada' : 'API Offline' }}</span>
     </div>
   </div>
 </mat-toolbar>

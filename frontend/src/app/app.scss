@@ -63,6 +63,12 @@
   border-radius: 50%;
   background: #69f0ae;
   box-shadow: 0 0 6px rgba(105, 240, 174, 0.5);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.toolbar-status.offline .status-dot {
+  background: #ff5252;
+  box-shadow: 0 0 6px rgba(255, 82, 82, 0.5);
 }
 
 .app-main {
