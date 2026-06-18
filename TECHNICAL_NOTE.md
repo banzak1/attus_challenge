@@ -40,7 +40,7 @@ O lado ruim é que o desenvolvedor precisa ser mais cuidadoso com subscriptions 
 
 ## Jest em vez de Karma/Jasmine
 
-Era obrigatório no escopo. O `jest-preset-angular` com setup zoneless (`setupZonelessTestEnv`) funciona bem. Usei `HttpClientTestingController` pra mockar chamadas HTTP e `MockStore` pra simular o estado do NgRx nos testes de componente. Mais rápido que Karma porque roda em JSDOM em vez de browser.
+ O `jest-preset-angular` com setup zoneless (`setupZonelessTestEnv`) funciona bem. Usei `HttpClientTestingController` pra mockar chamadas HTTP e `MockStore` pra simular o estado do NgRx nos testes de componente. Mais rápido que Karma porque roda em JSDOM em vez de browser.
 
 ## Prevenção de Memory Leaks
 
