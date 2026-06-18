@@ -1,8 +1,11 @@
 /* Angular Material Theme */
 @use '@angular/material' as mat;
 
-html {
+:root {
   color-scheme: light;
+}
+
+html {
   @include mat.theme((
     color: mat.$azure-palette,
     typography: Roboto,
@@ -14,6 +17,32 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background: var(--mat-sys-surface);
+  background: #faf9fe;
   color: var(--mat-sys-on-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar sutil */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--mat-sys-outline-variant);
+  border-radius: 3px;
+}
+
+/* Toolbar override para o header personalizado */
+.mat-toolbar {
+  --mat-toolbar-container-background-color: var(--mat-sys-primary);
+  --mat-toolbar-container-text-color: var(--mat-sys-on-primary);
+}
+
+/* Tabelas sem borda interna */
+.table-content .mat-mdc-table {
+  background: transparent;
+}
+
+/* Cards */
+.mat-mdc-card {
+  --mat-card-container-elevation: none;
 }

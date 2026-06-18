@@ -1,10 +1,14 @@
-<h2 mat-dialog-title>{{ titulo }}</h2>
+<h2 mat-dialog-title>
+  <mat-icon class="dialog-title-icon">{{ isEditing ? 'edit' : 'add_circle' }}</mat-icon>
+  {{ titulo }}
+</h2>
 
 <form [formGroup]="form" (ngSubmit)="salvar()">
-  <mat-dialog-content>
+  <mat-dialog-content class="form-content">
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Número do Processo</mat-label>
-      <input matInput formControlName="numero_processo" placeholder="Ex: 0001234-56.2026.8.26.0100" />
+      <input matInput formControlName="numero_processo" placeholder="Ex: 0001234-56.2026.8.26.0100" autocomplete="off" />
+      <mat-icon matTextPrefix class="field-prefix-icon">tag</mat-icon>
       @if (form.get('numero_processo')?.hasError('required')) {
         <mat-error>Número do processo é obrigatório</mat-error>
       }
@@ -12,7 +16,8 @@
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Título</mat-label>
-      <input matInput formControlName="titulo" placeholder="Ex: Ação de Cobrança" />
+      <input matInput formControlName="titulo" placeholder="Ex: Ação de Cobrança" autocomplete="off" />
+      <mat-icon matTextPrefix class="field-prefix-icon">title</mat-icon>
       @if (form.get('titulo')?.hasError('required')) {
         <mat-error>Título é obrigatório</mat-error>
       }
@@ -20,33 +25,46 @@
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Descrição</mat-label>
-      <textarea matInput formControlName="descricao" rows="3" placeholder="Descrição do processo (opcional)"></textarea>
+      <textarea matInput formControlName="descricao" rows="3" placeholder="Detalhes do processo (campo opcional)"></textarea>
+      <mat-icon matTextPrefix class="field-prefix-icon">description</mat-icon>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Status</mat-label>
       <mat-select formControlName="status">
         @for (opt of statusOptions; track opt.value) {
-          <mat-option [value]="opt.value">{{ opt.label }}</mat-option>
+          <mat-option [value]="opt.value">
+            <span class="status-option">
+              <span class="chip-dot" [class]="opt.value.toLowerCase()"></span>
+              {{ opt.label }}
+            </span>
+          </mat-option>
         }
       </mat-select>
     </mat-form-field>
   </mat-dialog-content>
 
-  <mat-dialog-actions align="end">
-    <button mat-button type="button" (click)="cancelar()" [disabled]="isSaving()">
+  <mat-dialog-actions align="end" class="form-actions">
+    <button mat-stroked-button type="button" (click)="cancelar()" [disabled]="isSaving()">
       Cancelar
     </button>
     <button
-      mat-raised-button
+      mat-flat-button
       color="primary"
       type="submit"
       [disabled]="form.invalid || isSaving()"
+      class="save-btn"
     >
       @if (isSaving()) {
-        <mat-spinner diameter="20" />
+        <span class="btn-content">
+          <mat-spinner diameter="20" />
+          Salvando...
+        </span>
       } @else {
-        Salvar
+        <span class="btn-content">
+          <mat-icon>check</mat-icon>
+          Salvar
+        </span>
       }
     </button>
   </mat-dialog-actions>
