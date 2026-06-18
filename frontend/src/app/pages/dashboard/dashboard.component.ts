@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { filter } from 'rxjs';
 
 import { ProcessosActions } from '../../store/processos.actions';
@@ -32,6 +34,8 @@ import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-
     MatProgressSpinnerModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatCardModule,
+    MatTooltipModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',

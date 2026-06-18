@@ -2,20 +2,72 @@
   width: 100%;
 }
 
-mat-dialog-content {
-  min-width: 400px;
-  padding-top: 8px;
+// ============================================================
+// Dialog Title
+// ============================================================
+.dialog-title-icon {
+  vertical-align: middle;
+  margin-right: 10px;
+  opacity: 0.7;
 }
 
-mat-dialog-actions {
-  padding: 16px 24px;
+// ============================================================
+// Form Content
+// ============================================================
+.form-content {
+  min-width: 420px;
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-prefix-icon {
+  color: var(--mat-sys-on-surface-variant);
+  margin-right: 4px;
+  font-size: 20px;
+}
+
+// ============================================================
+// Status Select Option
+// ============================================================
+.status-option {
+  display: flex;
+  align-items: center;
   gap: 8px;
+}
 
-  button[type="submit"] {
-    min-width: 100px;
+.chip-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
 
-    mat-spinner {
-      display: inline-block;
-    }
+  &.em_andamento { background: #1976d2; }
+  &.suspenso { background: #e65100; }
+  &.concluido { background: #2e7d32; }
+}
+
+// ============================================================
+// Form Actions
+// ============================================================
+.form-actions {
+  padding: 16px 24px 20px;
+  gap: 12px;
+  border-top: 1px solid var(--mat-sys-outline-variant);
+  margin-top: 8px;
+}
+
+.save-btn {
+  min-width: 130px;
+}
+
+.btn-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  mat-spinner {
+    display: inline-block;
   }
 }

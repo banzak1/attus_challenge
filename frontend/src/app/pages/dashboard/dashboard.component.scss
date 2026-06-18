@@ -1,67 +1,224 @@
-.dashboard-header {
+// ============================================================
+// Page Header
+// ============================================================
+.page-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
 
-  h2 {
+.page-title {
+  margin: 0 0 4px;
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--mat-sys-on-surface);
+}
+
+.page-subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+// ============================================================
+// Loading
+// ============================================================
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 0;
+  color: var(--mat-sys-on-surface-variant);
+  gap: 16px;
+
+  p {
     margin: 0;
-    font-weight: 500;
+    font-size: 0.95rem;
   }
 }
 
-.loading-container {
-  display: flex;
-  justify-content: center;
-  padding: 64px 0;
+// ============================================================
+// Empty State
+// ============================================================
+.empty-card {
+  border-radius: 16px;
+  border: 1px solid var(--mat-sys-outline-variant);
 }
 
 .empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 64px 0;
-  color: var(--mat-sys-on-surface-variant);
+  padding: 64px 24px;
+  text-align: center;
 
-  mat-icon {
-    font-size: 64px;
-    width: 64px;
-    height: 64px;
-    margin-bottom: 16px;
-    opacity: 0.5;
+  h2 {
+    margin: 0 0 8px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--mat-sys-on-surface);
   }
 
   p {
     margin: 0;
-    font-size: 1.1rem;
-  }
-
-  .hint {
-    margin-top: 8px;
-    font-size: 0.9rem;
-    opacity: 0.7;
+    color: var(--mat-sys-on-surface-variant);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 400px;
   }
 }
 
-.status-chip {
-  display: inline-block;
-  padding: 2px 10px;
-  border-radius: 12px;
-  font-size: 0.8rem;
+.empty-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--mat-sys-surface-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.empty-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  color: var(--mat-sys-on-surface-variant);
+  opacity: 0.5;
+}
+
+// ============================================================
+// Table Card
+// ============================================================
+.table-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+
+  .table-content {
+    padding: 0;
+
+    table {
+      width: 100%;
+    }
+  }
+}
+
+// ============================================================
+// Table Cells
+// ============================================================
+.process-number {
+  font-family: 'Roboto Mono', 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 0.82rem;
+  background: var(--mat-sys-surface-container);
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.01em;
+}
+
+.cell-title {
   font-weight: 500;
+}
+
+.actions-header {
+  text-align: center;
+  width: 120px;
+}
+
+.actions-cell {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.action-btn {
+  transition: background 0.2s;
+  margin: 0 2px;
+
+  &.edit-btn:hover {
+    background: rgba(var(--mat-sys-primary-rgb), 0.08);
+    color: var(--mat-sys-primary);
+  }
+
+  &.delete-btn:hover {
+    background: rgba(var(--mat-sys-error-rgb), 0.08);
+    color: var(--mat-sys-error);
+  }
+}
+
+// ============================================================
+// Table Row Hover
+// ============================================================
+.table-row {
+  transition: background 0.15s;
+
+  &:hover {
+    background: var(--mat-sys-surface-container-hover);
+  }
+}
+
+// ============================================================
+// Status Chips
+// ============================================================
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.4;
 
   &.EM_ANDAMENTO {
     background: #e3f2fd;
-    color: #1565c0;
+    color: #0d47a1;
   }
 
   &.SUSPENSO {
     background: #fff3e0;
-    color: #e65100;
+    color: #bf360c;
   }
 
   &.CONCLUIDO {
     background: #e8f5e9;
-    color: #2e7d32;
+    color: #1b5e20;
+  }
+}
+
+.chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  &.em-andamento {
+    background: #1976d2;
+  }
+
+  &.suspenso {
+    background: #e65100;
+  }
+
+  &.concluido {
+    background: #2e7d32;
+  }
+}
+
+// ============================================================
+// Responsive
+// ============================================================
+@media (max-width: 768px) {
+  .page-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .actions-cell {
+    .action-btn {
+      margin: 0;
+    }
   }
 }

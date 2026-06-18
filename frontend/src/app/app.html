@@ -1,7 +1,19 @@
-<mat-toolbar color="primary">
-  <span>{{ title }}</span>
+<mat-toolbar class="app-toolbar" color="primary">
+  <div class="toolbar-content">
+    <div class="toolbar-brand">
+      <mat-icon class="toolbar-icon">gavel</mat-icon>
+      <div class="toolbar-titles">
+        <span class="toolbar-title">Gerenciador de Processos Judiciais</span>
+        <span class="toolbar-subtitle">Procuradoria</span>
+      </div>
+    </div>
+    <div class="toolbar-status">
+      <span class="status-dot"></span>
+      <span>API Conectada</span>
+    </div>
+  </div>
 </mat-toolbar>
 
-<main>
+<main class="app-main">
   <router-outlet />
 </main>
